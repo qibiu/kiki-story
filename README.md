@@ -1,0 +1,2 @@
+# kiki-story
+my galgame
