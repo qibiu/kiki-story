@@ -98,7 +98,7 @@
    * 在窗口大小改变时进行强制缩放
    */
   const ua = navigator.userAgent;
-  const isIOSDevice = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+  // const isIOSDevice = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
   function resize() {
     const targetHeight = 1440;
     const targetWidth = 2560;
@@ -154,10 +154,10 @@
       /**
        * iOS 不强制旋转
        */
-      if(isIOSDevice){
-        const zoomWi = w/targetWidth;
-        transform = `translate(${-mw}px, ${-mh}px) scale(${zoomWi},${zoomWi})`
-      }
+      // if(isIOSDevice){
+      //   const zoomWi = w/targetWidth;
+      //   transform = `translate(${-mw}px, ${-mh}px) scale(${zoomWi},${zoomWi})`
+      // }
     }
     if (ebg) {
       ebg.style.transform = ebgTransform;
@@ -188,8 +188,9 @@
    * 注册 Service Worker
    */
   const u = navigator.userAgent;
-  const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // 判断是否是 iOS终端
-  if ("serviceWorker" in navigator && !isIOS) {
+  // const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // 判断是否是 iOS终端
+  // if ("serviceWorker" in navigator && !isIOS) {
+  if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./webgal-serviceworker.js").then(function (reg) {
       // registration worked
       console.log("Registration succeeded. Scope is " + reg.scope);
@@ -256,7 +257,7 @@
       if (title)
         title.style.opacity = "0";
     }, 500); //500ms后开始降低落地页透明度
-    if (!isIOS && title) {
+    if (title) {
       title.style.pointerEvents = "none"; //落地页不再响应点击
       title.style.background = "linear-gradient( #a1c4fd 0%, #c2e9fb 100%)"; //改变标题渐变效果
     }
